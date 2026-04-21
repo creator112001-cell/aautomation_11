@@ -29,17 +29,17 @@ jobs:
         id: run_tests
         continue-on-error: true
         run: |
-          pytest -q > test_output.txt 2>&1 || echo "tests failed"
+          pytest -q > test_output.txt 2>&1 || echo "tests failed" >> test_output.txt
 
       - name: Read test output
         id: read_output
         run: |
-          echo "log_message<<EOF" >> $GITHUB_OUTPUT
-          cat test_output.txt >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo 'log_message<<EOF' >> "$GITHUB_OUTPUT"
+          cat test_output.txt >> "$GITHUB_OUTPUT"
+          echo 'EOF' >> "$GITHUB_OUTPUT"
 
       - name: Call n8n webhook
-        if: failure()
+        if: always()
         uses: fjogeleit/http-request-action@v1
         with:
           url: "https://creator112001.app.n8n.cloud/webhook/cloudwatch-logs"
