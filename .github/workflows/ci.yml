@@ -39,7 +39,7 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Call n8n webhook
-        if: steps.run_tests.outcome == 'failure'
+        if: failure()
         uses: fjogeleit/http-request-action@v1
         with:
           url: "https://creator112001.app.n8n.cloud/webhook/cloudwatch-logs"
