@@ -1,14 +1,14 @@
-name: CI and send failures to n8n
+name: Tests and send log to n8n
 
 on:
   push:
     branches:
       - main
-      - "**"      # all branches
+      - "**"
   pull_request:
 
 jobs:
-  test-and-report:
+  test-and-send:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,7 +38,7 @@ jobs:
           cat test_output.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Send failure to n8n
+      - name: Call n8n webhook
         if: steps.run_tests.outcome == 'failure'
         uses: fjogeleit/http-request-action@v1
         with:
