@@ -42,7 +42,7 @@ jobs:
         if: always()
         uses: fjogeleit/http-request-action@v1
         with:
-          url: "https://creator112001.app.n8n.cloud/webhook/cloudwatch-logs"
+          url: "https://creator112001.app.n8n.cloud/webhook-test/cloudwatch-logs"
           method: "POST"
           customHeaders: '{"Content-Type": "application/json"}'
           data: >
