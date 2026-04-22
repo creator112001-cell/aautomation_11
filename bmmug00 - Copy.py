@@ -1,10 +1,12 @@
 def calculate_average(numbers):
-    total = 0
-    for i in range(len(numbers)):
-        total += numbers[i + 1]   # off‑by‑one: IndexError
+    # Check if input is None, not a list/tuple, or empty
+    if not numbers or not isinstance(numbers, (list, tuple)):
+        return 0.0
+    
+    total = sum(numbers)
     average = total / len(numbers)
     return average
 
 data = [10, 20, 30, 40]
 result = calculate_average(data)
-print("The average is: " + result)   # TypeError: can't concatenate str + float
+print(f"The average is: {result}")
