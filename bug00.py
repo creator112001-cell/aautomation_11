@@ -1,10 +1,14 @@
 def calculate_average(numbers):
-    total = 0
-    for i in range(len(numbers)):
-        total += numbers[i + 1]   # off‑by‑one: IndexError
+    if not numbers:
+        return 0.0
+    
+    # Use built-in sum() for idiomatic and efficient calculation
+    total = sum(numbers)
     average = total / len(numbers)
     return average
 
-data = [10, 20, 30, 40]
-result = calculate_average(data)
-print("The average is: " + result)   # TypeError: can't concatenate str + float
+if __name__ == "__main__":
+    data = [10, 20, 30, 40]
+    result = calculate_average(data)
+    # f-string handles float-to-string conversion safely
+    print(f"The average is: {result}")
